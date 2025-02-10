@@ -5,11 +5,29 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import streamlit as st
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 
-MODEL_PATH = r"C:\waste_classification\waste_model.tflite"  # Update your model path
+# Define Google Drive File ID and Model Path
+DRIVE_FILE_ID = "11w-HoSAAgg-VPIoRiNjTu9JUqmgXgbWm"  # File ID for the model in Google Drive
+MODEL_PATH = "waste_model.tflite"  # Path to save/download the model locally
+
+# Download model from Google Drive if it doesn't exist locally
+if not os.path.exists(MODEL_PATH):
+    try:
+        with st.spinner("Downloading model from Google Drive..."):
+            gdd.download_file_from_google_drive(
+                file_id=DRIVE_FILE_ID,
+                dest_path=MODEL_PATH,
+                unzip=False
+            )
+        st.success("Model downloaded successfully!")
+    except Exception as e:
+        logging.error(f"Error downloading model: {e}")
+        st.error("Failed to download the model. Please check the Drive link or file permissions.")
+        st.stop()
 
 # Load TFLite model
 interpreter = None
