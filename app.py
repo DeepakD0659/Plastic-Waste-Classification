@@ -14,7 +14,7 @@ st.set_page_config(page_title="Waste Classification", page_icon="♻️")
 logging.basicConfig(level=logging.INFO)
 
 # Define Google Drive File ID and Model Path
-DRIVE_FILE_ID = "1Gyt0S0y3r8h6hE0-2CZL2iJb-DKGDQDR"  # Updated File ID for the model in Google Drive
+DRIVE_FILE_ID = "1Gyt0S0y3r8h6hE0-2CZL2iJb-DKGDQDR"  # Extracted File ID from the provided link
 MODEL_PATH = "model.tflite"  # Path to save/download the model locally
 
 # Download model from Google Drive if it doesn't exist locally
