@@ -1,0 +1,5 @@
+streamlit
+tensorflow==2.12.0  # Or replace with tflite-runtime if using TensorFlow Lite
+gdown
+Pillow
+numpy
